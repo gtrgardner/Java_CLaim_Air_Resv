@@ -7,35 +7,32 @@ import java.sql.SQLException;
 public class AirResvDAOImpl {
 
 	static{
-
-		try {
-
+		try{
 			Class.forName("com.mysql.jdbc.Driver");
-
-		} catch (Exception ex) {
+		}catch (Exception ex){
 
 		}
 	}
-	
-	private Connection getConnection()throws SQLException {
+
+	public Connection getConnection()throws SQLException {
 
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/"
-				+ "Claim_Air_Reservations?autoReconnect=true&useSSL=false",
+				+ "airline?autoReconnect=true&useSSL=false",
 				"robert", "robert");
 	} 
-		
-private void closeConnection(Connection conn) {
 
-	if (conn == null) {
-		return;
+	public void closeConnection(Connection conn) {
+
+		if (conn == null) {
+			return;
+		}
+		try {
+			conn.close();
+		} catch (SQLException ex) {
+
+		}
+
 	}
-	try {
-		conn.close();
-	} catch (SQLException ex) {
-
-	}
-
-}
 
 }
 
