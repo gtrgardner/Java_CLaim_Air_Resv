@@ -14,16 +14,12 @@ public class UserInterface extends JFrame {
 	private JButton cancelRegButton;
 	public void UserFrame() {
 		
-		EventQueue.invokeLater(() -> {
-
-		});
-
-		setVisible(true);
-
 	}
 
 	public UserInterface() {
-
+		
+		EventQueue.invokeLater(() -> {
+		});
 		this.setTitle("Claim Air Reservations");
 		// this.setSize(400, 400);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -36,6 +32,8 @@ public class UserInterface extends JFrame {
 		this.setLocationRelativeTo(null);
 		//	add(new ResvComponent());
 		//	pack();
+		setVisible(true);
+		
 	}
 	
 	public void createInterfaceView(){

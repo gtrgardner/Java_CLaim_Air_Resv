@@ -22,20 +22,23 @@ public class UserLogin extends JFrame {
 	private JLabel labelPassword;
 	// private JLabel fail;
 	private JTextField textUser;
-	private JTextField textPassword;
+	private JPasswordField textPassword;
 	private String uName;
 	private String uPass;
-
+	
+	
+	
 	public UserLogin() {
-
+		
 		EventQueue.invokeLater(() -> {
 		});
-
 		setTitle("Login");
 		setSize(new Dimension(250, 200));
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		setVisible(true);
+		
 	}
 
 	// Create Login View
@@ -45,7 +48,7 @@ public class UserLogin extends JFrame {
 		getContentPane().add(panel);
 		labelUser = new JLabel("Username");
 		textUser = new JTextField();
-		textPassword = new JTextField();
+		textPassword = new JPasswordField();
 		textUser.setPreferredSize(new Dimension(200, 25));
 		textPassword.setPreferredSize(new Dimension(200, 25));
 		panel.add(labelUser);
@@ -53,7 +56,7 @@ public class UserLogin extends JFrame {
 		labelPassword = new JLabel("Enter Password");
 		panel.add(labelPassword);
 		panel.add(textPassword);
-		buttonSubmit = new JButton("Submit");
+		buttonSubmit = new JButton("SUBMIT");
 		panel.add(buttonSubmit);
 		buttonSubmit.addActionListener(new ButtonSubmitActionListener());
 	}
@@ -64,6 +67,7 @@ public class UserLogin extends JFrame {
 	 */
 	private class ButtonSubmitActionListener implements ActionListener {
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String sql = null;
@@ -79,40 +83,34 @@ public class UserLogin extends JFrame {
 
 					if (uName.equals(rs.getString("username"))) {
 						if (uPass.equals(rs.getString("password"))) {
+
 							UserInterface ui = new UserInterface();
 							ui.createInterfaceView();
 							ui.setVisible(true);
 							userLoginClose();
-							
-							/*if (!uPass.equals(rs.getString("username"))||!uPass.equals(rs.getString("password"))) {
-								System.out.println("Fail");
-						}*/
-					}else{
-					JOptionPane.showMessageDialog(null,"Fail");
-						
-					}
+
+						}
+
 					}
 				}
+
 				conn.close();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}
 
+		// Closes the Login Screen
+		public void userLoginClose() {
+
+			dispose();
 		}
 
 	}
-
-	// Closes the Login Screen
-	public void userLoginClose() {
-
-		dispose();
-	}
-	/*
-	 * public void loginFail(){
-	 * JOptionPane.showConfirmDialog(null,"Fail, Try Again");
-	 * 
-	 * }
-	 */
-
 }
+
+/*
+ * } else { JOptionPane.showMessageDialog(null, "Login Error"); break; } } else
+ * { JOptionPane.showMessageDialog(null, "Login Error");
+ */
